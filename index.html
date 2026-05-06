@@ -1,0 +1,2302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Treaz Fashion — Where Elegance Meets Identity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0a0a0a;
+  --white: #fdfcf9;
+  --gold: #c9a84c;
+  --gold-light: #e8cc7e;
+  --gold-pale: #f5e9c8;
+  --beige: #f0ebe1;
+  --beige-dark: #d6cfc2;
+  --warm-grey: #8c8378;
+  --ink: #1a1714;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Jost', system-ui, sans-serif;
+  --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--white);
+  color: var(--ink);
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CUSTOM CURSOR ── */
+.cursor {
+  position: fixed;
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s var(--transition), width 0.3s, height 0.3s;
+  transform: translate(-50%, -50%);
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.35s var(--transition), width 0.3s, height 0.3s, opacity 0.3s;
+  transform: translate(-50%, -50%);
+  opacity: 0.6;
+}
+body:hover .cursor { opacity: 1; }
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4vw;
+  height: 80px;
+  transition: background 0.5s, height 0.4s, box-shadow 0.4s;
+}
+nav.scrolled {
+  background: rgba(253, 252, 249, 0.96);
+  backdrop-filter: blur(12px);
+  height: 64px;
+  box-shadow: 0 1px 0 rgba(201,168,76,0.2);
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: var(--white);
+  text-decoration: none;
+  transition: color 0.4s;
+}
+nav.scrolled .nav-logo { color: var(--ink); }
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  transition: color 0.3s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 100%;
+  height: 1px;
+  background: var(--gold);
+  transition: right 0.4s var(--transition);
+}
+.nav-links a:hover::after, .nav-links a.active::after { right: 0; }
+nav.scrolled .nav-links a { color: var(--warm-grey); }
+nav.scrolled .nav-links a:hover { color: var(--ink); }
+
+.nav-cta {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(201,168,76,0.5);
+  padding: 0.55rem 1.4rem;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.nav-cta:hover { background: var(--gold); color: var(--black); border-color: var(--gold); }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.hamburger span { display: block; width: 24px; height: 1px; background: var(--white); transition: background 0.4s; }
+nav.scrolled .hamburger span { background: var(--ink); }
+
+/* ── PAGES ── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── HOME PAGE ── */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  overflow: hidden;
+  padding: 0 6vw 10vh;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('https://images.unsplash.com/photo-1617019114583-affb34d1b3cd?w=1800&q=85&fit=crop') center/cover no-repeat;
+  overflow: hidden;
+}
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(10,8,5,0.82) 0%, rgba(10,8,5,0.55) 60%, rgba(10,8,5,0.3) 100%),
+    radial-gradient(ellipse 60% 80% at 70% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,8,5,0.6) 0%, transparent 50%);
+}
+
+/* Decorative fashion silhouette lines */
+.hero-lines {
+  position: absolute;
+  right: 8vw;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38vw;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-lines svg {
+  width: 100%;
+  height: 100%;
+  opacity: 0.12;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+  animation: heroReveal 1.4s var(--transition) both;
+}
+@keyframes heroReveal {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.8rem;
+}
+.hero-tag::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 6vw, 5.2rem);
+  font-weight: 300;
+  line-height: 1.12;
+  color: var(--white);
+  margin-bottom: 1.4rem;
+  letter-spacing: 0.02em;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.hero-sub {
+  font-size: 0.88rem;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 3rem;
+  font-weight: 300;
+  max-width: 420px;
+  line-height: 1.8;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: var(--black);
+  padding: 1rem 2.4rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.35s, transform 0.3s;
+  display: inline-block;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+.btn-outline {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--white);
+  padding: 1rem 2.4rem;
+  border: 1px solid rgba(255,255,255,0.35);
+  text-decoration: none;
+  font-weight: 300;
+  transition: border-color 0.35s, background 0.35s, transform 0.3s;
+  display: inline-block;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+.hero-scroll {
+  position: absolute;
+  bottom: 4vh;
+  right: 5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  z-index: 2;
+}
+.hero-scroll span {
+  font-size: 0.58rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  writing-mode: vertical-rl;
+}
+.scroll-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
+}
+
+/* ── SECTION COMMON ── */
+section {
+  padding: 8rem 6vw;
+}
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+}
+.section-title em { font-style: italic; color: var(--gold); }
+.section-sub {
+  font-size: 0.82rem;
+  color: var(--warm-grey);
+  line-height: 1.9;
+  max-width: 500px;
+  letter-spacing: 0.04em;
+}
+
+/* ── FEATURED COLLECTION ── */
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 4rem;
+}
+.collection-card {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  cursor: pointer;
+  background: var(--beige);
+}
+.collection-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.collection-card:hover .card-img { transform: scale(1.05); }
+
+/* Stylized fashion illustration placeholders */
+.card-placeholder {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.collection-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,8,5,0.85) 0%, rgba(10,8,5,0.15) 50%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.5s;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem 1.8rem;
+}
+.collection-card:hover .collection-card-overlay { opacity: 1; }
+
+.card-name {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  color: var(--white);
+  font-weight: 300;
+  font-style: italic;
+  margin-bottom: 0.3rem;
+  transform: translateY(10px);
+  transition: transform 0.4s var(--transition);
+}
+.collection-card:hover .card-name { transform: translateY(0); }
+
+.card-price {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  transform: translateY(10px);
+  transition: transform 0.4s 0.05s var(--transition);
+}
+.collection-card:hover .card-price { transform: translateY(0); }
+
+.card-view {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-top: 0.8rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s 0.1s, transform 0.4s 0.1s var(--transition);
+}
+.collection-card:hover .card-view { opacity: 1; transform: translateY(0); }
+.card-view::after {
+  content: '→';
+  font-size: 0.9rem;
+}
+
+/* ── BRAND STORY ── */
+.brand-story {
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+.brand-story::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.brand-story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+.brand-story .section-title { color: var(--white); }
+.brand-story .section-label { }
+.story-text {
+  font-family: var(--serif);
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  font-weight: 300;
+  line-height: 1.85;
+  color: rgba(255,255,255,0.7);
+  font-style: italic;
+}
+.story-text strong {
+  color: var(--gold-light);
+  font-style: normal;
+  font-weight: 400;
+}
+.brand-quote {
+  border-left: 2px solid var(--gold);
+  padding-left: 2rem;
+  margin-top: 2.5rem;
+}
+.brand-quote p {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--gold-light);
+  font-style: italic;
+  line-height: 1.7;
+}
+.story-visual {
+  position: relative;
+  height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.story-visual-box {
+  width: 85%;
+  height: 100%;
+  background: linear-gradient(145deg, #1e1a12, #2a2318);
+  border: 1px solid rgba(201,168,76,0.15);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.story-visual-box::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 40%;
+  background: linear-gradient(to top, rgba(201,168,76,0.06), transparent);
+}
+.story-ornament {
+  font-family: var(--serif);
+  font-size: 12rem;
+  color: rgba(201,168,76,0.06);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1;
+  user-select: none;
+  letter-spacing: -0.05em;
+}
+.story-tag-float {
+  position: absolute;
+  bottom: 2rem;
+  right: -1rem;
+  background: var(--gold);
+  color: var(--black);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.7rem 1.4rem;
+  font-weight: 500;
+  writing-mode: horizontal-tb;
+}
+
+/* ── SIGNATURE STYLES ── */
+.styles-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+}
+.style-card {
+  border: 1px solid var(--beige-dark);
+  padding: 2.5rem 1.8rem;
+  transition: border-color 0.4s, transform 0.4s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+}
+.style-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 3px;
+  background: linear-gradient(to right, var(--gold), var(--gold-light));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--transition);
+}
+.style-card:hover { border-color: rgba(201,168,76,0.5); transform: translateY(-4px); }
+.style-card:hover::before { transform: scaleX(1); }
+.style-icon {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 1.5rem;
+  color: var(--gold);
+}
+.style-card h3 {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.8rem;
+}
+.style-card p {
+  font-size: 0.78rem;
+  color: var(--warm-grey);
+  line-height: 1.85;
+  letter-spacing: 0.03em;
+}
+.style-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 1.5rem;
+  text-decoration: none;
+  transition: gap 0.3s;
+}
+.style-link:hover { gap: 0.8rem; }
+
+/* ── TESTIMONIALS ── */
+.testimonials {
+  background: var(--beige);
+  text-align: center;
+}
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  margin-top: 4rem;
+}
+.testimonial-card {
+  background: var(--white);
+  padding: 2.8rem 2.2rem;
+  border-top: 2px solid var(--gold);
+  text-align: left;
+  position: relative;
+}
+.testimonial-quote {
+  font-size: 3.5rem;
+  color: var(--gold);
+  font-family: var(--serif);
+  line-height: 0.5;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  opacity: 0.5;
+}
+.testimonial-text {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.9;
+  margin-bottom: 1.8rem;
+  font-weight: 300;
+}
+.testimonial-author {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+}
+.testimonial-role {
+  font-size: 0.7rem;
+  color: var(--warm-grey);
+  margin-top: 0.2rem;
+  letter-spacing: 0.05em;
+}
+
+/* ── CTA SECTION ── */
+.cta-section {
+  background: var(--black);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 10rem 6vw;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,168,76,0.07) 0%, transparent 70%);
+}
+.cta-bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--serif);
+  font-size: 18vw;
+  color: rgba(255,255,255,0.02);
+  font-style: italic;
+  white-space: nowrap;
+  pointer-events: none;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+.cta-section .section-title { color: var(--white); }
+.cta-section .section-sub { color: rgba(255,255,255,0.5); margin: 1.2rem auto 3rem; }
+.cta-section .section-label { justify-content: center; }
+
+/* ── COLLECTION PAGE ── */
+.page-header {
+  background: var(--ink);
+  padding: 14rem 6vw 6rem;
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+.page-header .section-label { }
+.page-header .section-title { color: var(--white); }
+.page-header .section-sub { color: rgba(255,255,255,0.5); margin-top: 0.8rem; }
+
+.collection-filters {
+  padding: 3rem 6vw 0;
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.collection-filters span {
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--warm-grey);
+  margin-right: 0.5rem;
+}
+.filter-btn {
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.4rem;
+  border: 1px solid var(--beige-dark);
+  background: transparent;
+  color: var(--warm-grey);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.filter-btn:hover, .filter-btn.active {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(201,168,76,0.04);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  padding: 3rem 6vw 8rem;
+}
+.product-card {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  background: var(--beige);
+}
+.product-img-wrap {
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  position: relative;
+}
+.product-placeholder {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.7s var(--transition);
+}
+.product-card:hover .product-placeholder { transform: scale(1.04); }
+
+.product-reveal {
+  position: absolute;
+  inset: 0;
+  background: rgba(10,8,5,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.product-card:hover .product-reveal { opacity: 1; }
+.reveal-btn {
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.5);
+  padding: 0.8rem 1.8rem;
+  transition: border-color 0.3s, color 0.3s;
+  background: transparent;
+  cursor: pointer;
+}
+.reveal-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+.product-info {
+  padding: 1.4rem 1.2rem 1.8rem;
+  background: var(--white);
+  border-top: 1px solid var(--beige);
+}
+.product-category {
+  font-size: 0.58rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+}
+.product-name {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+.product-price {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--warm-grey);
+}
+
+/* ── PRODUCT DETAIL ── */
+.product-detail-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  min-height: 100vh;
+  padding-top: 80px;
+}
+.detail-gallery {
+  position: sticky;
+  top: 80px;
+  height: calc(100vh - 80px);
+  overflow: hidden;
+  background: var(--beige);
+}
+.main-detail-img {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.detail-thumbs {
+  position: absolute;
+  left: 1.5rem;
+  bottom: 2rem;
+  display: flex;
+  gap: 0.6rem;
+}
+.thumb {
+  width: 50px;
+  height: 65px;
+  background: var(--beige-dark);
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.5rem;
+  color: var(--warm-grey);
+}
+.thumb.active { border-color: var(--gold); }
+
+.detail-content {
+  padding: 6rem 4rem 6rem;
+  overflow-y: auto;
+}
+.detail-breadcrumb {
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--warm-grey);
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.detail-breadcrumb a { color: var(--warm-grey); text-decoration: none; cursor: pointer; }
+.detail-breadcrumb a:hover { color: var(--gold); }
+.detail-category {
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+}
+.detail-name {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.25;
+  margin-bottom: 0.6rem;
+}
+.detail-price {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  color: var(--warm-grey);
+  margin-bottom: 2.5rem;
+}
+.detail-divider {
+  height: 1px;
+  background: var(--beige-dark);
+  margin: 2rem 0;
+}
+.detail-desc {
+  font-family: var(--serif);
+  font-size: 1rem;
+  line-height: 2;
+  color: var(--warm-grey);
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+.perfect-for {
+  margin-bottom: 2.5rem;
+}
+.perfect-for h4 {
+  font-size: 0.62rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+.perfect-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.tag {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  padding: 0.45rem 1rem;
+  border: 1px solid var(--beige-dark);
+  color: var(--warm-grey);
+}
+.detail-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.btn-wa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: #25D366;
+  color: var(--white);
+  padding: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+  text-decoration: none;
+}
+.btn-wa:hover { background: #20ba5a; transform: translateY(-2px); }
+
+/* ── ABOUT PAGE ── */
+.about-hero {
+  min-height: 60vh;
+  background: var(--ink);
+  display: flex;
+  align-items: flex-end;
+  padding: 14rem 6vw 5rem;
+  position: relative;
+  overflow: hidden;
+}
+.about-hero::before {
+  content: '';
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 40%;
+  background: linear-gradient(to left, rgba(201,168,76,0.04), transparent);
+}
+.about-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+.about-hero .section-title { color: var(--white); max-width: 700px; }
+.about-hero-sub {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.5);
+  font-style: italic;
+  margin-top: 1rem;
+  max-width: 500px;
+  line-height: 1.8;
+}
+
+.about-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  padding: 8rem 6vw;
+  align-items: center;
+}
+.founder-visual {
+  background: linear-gradient(145deg, var(--beige), var(--beige-dark));
+  height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.founder-visual::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--gold), var(--gold-light));
+}
+.founder-text { font-size: 6rem; color: rgba(0,0,0,0.06); font-family: var(--serif); font-style: italic; }
+
+.founder-label {
+  position: absolute;
+  bottom: 2rem;
+  right: -0.5rem;
+  background: var(--ink);
+  color: var(--gold);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.8rem 1.5rem;
+}
+
+.about-philosophy {
+  background: var(--beige);
+  padding: 8rem 6vw;
+  text-align: center;
+}
+.philosophy-quote {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3.5vw, 2.6rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ink);
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  line-height: 1.5;
+}
+.philosophy-quote em { color: var(--gold); }
+
+.craft-section {
+  padding: 8rem 6vw;
+}
+.craft-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin-top: 4rem;
+}
+.craft-item {
+  border-top: 1px solid var(--beige-dark);
+  padding-top: 2rem;
+}
+.craft-number {
+  font-family: var(--serif);
+  font-size: 3.5rem;
+  color: var(--gold-pale);
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+.craft-item h3 {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  color: var(--ink);
+  margin-bottom: 0.8rem;
+}
+.craft-item p {
+  font-size: 0.8rem;
+  color: var(--warm-grey);
+  line-height: 1.9;
+  letter-spacing: 0.03em;
+}
+
+/* ── CONTACT PAGE ── */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 80px);
+  padding-top: 80px;
+}
+.contact-left {
+  background: var(--ink);
+  padding: 7rem 5rem;
+  position: relative;
+  overflow: hidden;
+}
+.contact-left::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 30%;
+  background: linear-gradient(to top, rgba(201,168,76,0.06), transparent);
+  pointer-events: none;
+}
+.contact-left .section-title { color: var(--white); margin-bottom: 2rem; }
+.contact-info-items {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+}
+.contact-info-item label {
+  display: block;
+  font-size: 0.58rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+}
+.contact-info-item p {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.7;
+  letter-spacing: 0.03em;
+}
+.social-links {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 3.5rem;
+}
+.social-link {
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  transition: color 0.3s;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+.social-link:hover { color: var(--gold); border-color: var(--gold); }
+
+.contact-right {
+  padding: 7rem 5rem;
+  background: var(--white);
+}
+.contact-right .section-label { }
+.form-title {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--ink);
+  margin-bottom: 2.5rem;
+}
+.luxury-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+.form-group {
+  position: relative;
+}
+.form-group label {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--warm-grey);
+  margin-bottom: 0.6rem;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--beige-dark);
+  padding: 0.8rem 0;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  color: var(--ink);
+  background: transparent;
+  outline: none;
+  transition: border-color 0.3s;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--gold);
+}
+.form-group textarea { resize: none; min-height: 100px; }
+.btn-submit {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--white);
+  padding: 1.1rem 2.4rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.35s, transform 0.3s;
+  align-self: flex-start;
+  font-weight: 400;
+}
+.btn-submit:hover { background: var(--gold); color: var(--black); transform: translateY(-2px); }
+
+.wa-consult {
+  background: var(--beige);
+  padding: 5rem 6vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+}
+.wa-consult-text h3 {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+.wa-consult-text p {
+  font-size: 0.8rem;
+  color: var(--warm-grey);
+  letter-spacing: 0.05em;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--black);
+  padding: 5rem 6vw 3rem;
+  color: rgba(255,255,255,0.4);
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.footer-brand {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  color: var(--white);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.2rem;
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+}
+.footer-tagline {
+  font-size: 0.75rem;
+  line-height: 1.9;
+  max-width: 240px;
+  letter-spacing: 0.04em;
+}
+.footer-col h4 {
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+}
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.footer-links a {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  transition: color 0.3s;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+}
+.footer-links a:hover { color: var(--gold); }
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2.5rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+}
+.footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; }
+.footer-bottom a:hover { color: var(--gold); }
+.gold-line {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  margin-bottom: 3rem;
+  opacity: 0.3;
+}
+
+/* ── ANIMATIONS ── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-in {
+  opacity: 0;
+  transition: opacity 1s var(--transition);
+}
+.fade-in.visible { opacity: 1; }
+
+/* Stagger delays */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+
+/* ── MOBILE NAV ── */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: var(--ink);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  transform: translateX(100%);
+  transition: transform 0.5s var(--transition);
+}
+.mobile-menu.open { transform: translateX(0); }
+.mobile-menu a {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  color: var(--white);
+  text-decoration: none;
+  font-style: italic;
+  font-weight: 300;
+  transition: color 0.3s;
+}
+.mobile-menu a:hover { color: var(--gold); }
+.mobile-close {
+  position: absolute;
+  top: 2rem;
+  right: 4vw;
+  font-size: 1.5rem;
+  color: var(--white);
+  cursor: pointer;
+  background: none;
+  border: none;
+  line-height: 1;
+}
+
+/* ── PARALLAX ── */
+.parallax-hero {
+  will-change: transform;
+}
+
+/* ── GOLD DIVIDER ── */
+.gold-ornament {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  justify-content: center;
+  margin: 4rem 0;
+}
+.gold-ornament span {
+  height: 1px;
+  flex: 1;
+  max-width: 200px;
+  background: linear-gradient(to right, transparent, var(--gold));
+}
+.gold-ornament span:last-child {
+  background: linear-gradient(to left, transparent, var(--gold));
+}
+.gold-ornament-diamond {
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .collection-grid { grid-template-columns: repeat(2, 1fr); }
+  .styles-grid { grid-template-columns: repeat(2, 1fr); }
+  .testimonials-grid { grid-template-columns: 1fr 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .brand-story-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .story-visual { height: 300px; }
+  .about-intro { grid-template-columns: 1fr; gap: 3rem; }
+  .contact-layout { grid-template-columns: 1fr; }
+  .contact-left { padding: 5rem 2.5rem; }
+  .contact-right { padding: 5rem 2.5rem; }
+  .product-detail-layout { grid-template-columns: 1fr; }
+  .detail-gallery { position: relative; top: auto; height: 70vw; }
+  .detail-content { padding: 3rem 2rem; }
+}
+
+@media (max-width: 768px) {
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .hero h1 { font-size: 2.4rem; }
+  .collection-grid { grid-template-columns: 1fr; }
+  .styles-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .products-grid { grid-template-columns: repeat(2, 1fr); padding: 2rem 4vw 5rem; }
+  .craft-grid { grid-template-columns: 1fr; gap: 2rem; }
+  section { padding: 5rem 5vw; }
+  .footer-top { grid-template-columns: 1fr; gap: 2.5rem; }
+  .wa-consult { flex-direction: column; text-align: center; }
+  body { cursor: auto; }
+  .cursor, .cursor-ring { display: none; }
+}
+
+@media (max-width: 480px) {
+  .products-grid { grid-template-columns: 1fr; }
+  .hero-btns { flex-direction: column; }
+  .btn-primary, .btn-outline { text-align: center; }
+}
+
+/* ── SILK TEXTURE OVERLAY ── */
+.silk-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9990;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.015'/%3E%3C/svg%3E");
+  opacity: 1;
+}
+
+
+.collection-card:hover .card-real-img { transform: scale(1.05); }
+.product-card:hover .product-placeholder img { transform: scale(1.04); }
+
+/* Coloured fashion illustration cards */
+.fashion-illustration {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+</style>
+</head>
+<body>
+
+<!-- Silk texture -->
+<div class="silk-overlay"></div>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+  <a href="#" onclick="navigate('home');toggleMenu()">Home</a>
+  <a href="#" onclick="navigate('collection');toggleMenu()">Collection</a>
+  <a href="#" onclick="navigate('about');toggleMenu()">Our Story</a>
+  <a href="#" onclick="navigate('contact');toggleMenu()">Contact</a>
+</div>
+
+<!-- Navigation -->
+<nav id="mainNav">
+  <a class="nav-logo" href="#" onclick="navigate('home')">Treaz Fashion</a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="navigate('home')" class="active" data-page="home">Home</a></li>
+    <li><a href="#" onclick="navigate('collection')" data-page="collection">Collection</a></li>
+    <li><a href="#" onclick="navigate('about')" data-page="about">Our Story</a></li>
+    <li><a href="#" onclick="navigate('contact')" data-page="contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="#" onclick="navigate('contact')">Book Consultation</a>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ═══════════════ HOME PAGE ═══════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-bg parallax-hero">
+      <!-- Decorative SVG fashion silhouette -->
+      <div class="hero-lines">
+        <svg viewBox="0 0 400 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M200 20 C200 20 160 80 150 140 C140 200 155 220 155 260 C155 320 120 380 100 480 C85 550 90 620 90 680" stroke="white" stroke-width="0.5" opacity="0.6"/>
+          <path d="M200 20 C200 20 240 80 250 140 C260 200 245 220 245 260 C245 320 280 380 300 480 C315 550 310 620 310 680" stroke="white" stroke-width="0.5" opacity="0.6"/>
+          <path d="M200 20 L200 680" stroke="white" stroke-width="0.3" opacity="0.4" stroke-dasharray="4 8"/>
+          <ellipse cx="200" cy="140" rx="50" ry="30" stroke="white" stroke-width="0.5" opacity="0.5"/>
+          <path d="M155 260 Q200 290 245 260" stroke="white" stroke-width="0.5" opacity="0.5"/>
+          <!-- Decorative circles -->
+          <circle cx="200" cy="60" r="40" stroke="white" stroke-width="0.3" opacity="0.3"/>
+          <circle cx="200" cy="60" r="25" stroke="rgba(201,168,76,1)" stroke-width="0.3" opacity="0.8"/>
+          <!-- hem line -->
+          <path d="M90 680 Q200 670 310 680" stroke="white" stroke-width="0.5" opacity="0.6"/>
+          <!-- waist detail -->
+          <path d="M140 270 Q200 285 260 270" stroke="rgba(201,168,76,1)" stroke-width="0.6" opacity="0.7"/>
+          <!-- neckline -->
+          <path d="M165 135 Q200 155 235 135" stroke="rgba(201,168,76,1)" stroke-width="0.6" opacity="0.7"/>
+        </svg>
+      </div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-tag">Premium African Couture House</div>
+      <h1>Treaz Fashion —<br><em>Where Elegance</em><br>Meets Identity</h1>
+      <p class="hero-sub">Luxury couture crafted for bold, modern women. Every stitch is a statement of power, grace, and unforgettable presence.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-primary" onclick="navigate('collection')">Explore Collection</a>
+        <a href="#" class="btn-outline" onclick="navigate('contact')">Book Consultation</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Featured Collection -->
+  <section style="padding: 7rem 0; background: var(--white);">
+    <div style="padding: 0 6vw; margin-bottom: 0;">
+      <div class="section-label fade-up">The Collection</div>
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem;">
+        <h2 class="section-title fade-up delay-1">Featured <em>Designs</em></h2>
+        <a href="#" onclick="navigate('collection')" class="style-link fade-up delay-2" style="margin-bottom:0.3rem">View All Pieces →</a>
+      </div>
+    </div>
+    <div class="collection-grid" style="margin-top:3rem;">
+      <!-- Cards -->
+      <div class="collection-card fade-in delay-1" onclick="navigate('detail')">
+        <div class="collection-card-inner">
+          <div class="card-placeholder fashion-illustration" style="background:#111;">
+            <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=800&q=80&fit=crop" alt="Golden Aura Gown" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);" class="card-real-img"/>
+          </div>
+          <div class="collection-card-overlay">
+            <div class="card-name">The Golden Aura Gown</div>
+            <div class="card-price">From ₦280,000</div>
+            <div class="card-view">View Details</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="collection-card fade-in delay-2" onclick="navigate('detail')">
+        <div class="collection-card-inner">
+          <div class="card-placeholder fashion-illustration" style="background:#111;">
+            <img src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=800&q=80&fit=crop" alt="Midnight Empress" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);" class="card-real-img"/>
+          </div>
+          <div class="collection-card-overlay">
+            <div class="card-name">Midnight Empress</div>
+            <div class="card-price">From ₦340,000</div>
+            <div class="card-view">View Details</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="collection-card fade-in delay-3" onclick="navigate('detail')">
+        <div class="collection-card-inner">
+          <div class="card-placeholder fashion-illustration" style="background:#111;">
+            <img src="https://images.unsplash.com/photo-1594552072238-b8a33785b6cd?w=800&q=80&fit=crop" alt="Bridal Reverie" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);" class="card-real-img"/>
+          </div>
+          <div class="collection-card-overlay">
+            <div class="card-name">Bridal Reverie</div>
+            <div class="card-price">From ₦450,000</div>
+            <div class="card-view">View Details</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="collection-card fade-in delay-1" onclick="navigate('detail')">
+        <div class="collection-card-inner">
+          <div class="card-placeholder fashion-illustration" style="background:#f0ebe1;">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&fit=crop" alt="Ivory Sovereign" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);" class="card-real-img"/>
+          </div>
+          <div class="collection-card-overlay">
+            <div class="card-name">Ivory Sovereign</div>
+            <div class="card-price">From ₦195,000</div>
+            <div class="card-view">View Details</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="collection-card fade-in delay-2" onclick="navigate('detail')">
+        <div class="collection-card-inner">
+          <div class="card-placeholder fashion-illustration" style="background:#111;">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80&fit=crop" alt="Velvet Nocturne" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);" class="card-real-img"/>
+          </div>
+          <div class="collection-card-overlay">
+            <div class="card-name">Velvet Nocturne</div>
+            <div class="card-price">From ₦310,000</div>
+            <div class="card-view">View Details</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="collection-card fade-in delay-3" onclick="navigate('detail')">
+        <div class="collection-card-inner">
+          <div class="card-placeholder fashion-illustration" style="background:#111;">
+            <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&q=80&fit=crop" alt="Adire Luxe" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);" class="card-real-img"/>
+          </div>
+          <div class="collection-card-overlay">
+            <div class="card-name">Adire Luxe</div>
+            <div class="card-price">From ₦220,000</div>
+            <div class="card-view">View Details</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Story -->
+  <section class="brand-story">
+    <div class="brand-story-grid">
+      <div>
+        <div class="section-label fade-up">Our Heritage</div>
+        <h2 class="section-title fade-up delay-1">Crafted with <em>Soul</em></h2>
+        <div class="story-text fade-up delay-2">
+          <p>At Treaz Fashion, every gown begins as a whisper — a vision of the woman who will wear it. We don't simply create clothing. We <strong>sculpt identity</strong>. Each piece is born from the marriage of African sensibility and global luxury.</p>
+          <p style="margin-top:1.2rem;">Our artisans bring decades of mastery to every seam, every drape, every hand-sewn crystal. We source only the finest fabrics — French chiffon, Italian silk, hand-woven African lace — because you deserve nothing less than extraordinary.</p>
+        </div>
+        <div class="brand-quote fade-up delay-3">
+          <p>"Treaz Fashion is not just clothing — it is the expression of elegance, power, and identity."</p>
+        </div>
+      </div>
+      <div class="story-visual fade-in delay-2">
+        <div class="story-visual-box" style="overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=900&q=80&fit=crop" alt="Treaz Fashion Atelier" style="width:100%;height:100%;object-fit:cover;opacity:0.75;"/>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(26,21,16,0.7) 0%,transparent 60%);"></div>
+          <div class="story-tag-float">Est. 2024</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Signature Styles -->
+  <section>
+    <div class="section-label fade-up">What We Create</div>
+    <h2 class="section-title fade-up delay-1">Signature <em>Styles</em></h2>
+    <div class="styles-grid" style="margin-top:3rem;">
+      <div class="style-card fade-up delay-1">
+        <svg class="style-icon" viewBox="0 0 44 44" fill="none">
+          <path d="M22 4 C18 12 12 16 10 24 C8 32 12 36 12 40 L32 40 C32 36 36 32 34 24 C32 16 26 12 22 4Z" stroke="currentColor" stroke-width="1" fill="none" opacity="0.8"/>
+          <path d="M14 40 C14 40 8 44 4 44" stroke="currentColor" stroke-width="0.8" opacity="0.5"/>
+          <path d="M30 40 C30 40 36 44 40 44" stroke="currentColor" stroke-width="0.8" opacity="0.5"/>
+          <path d="M12 24 Q22 28 32 24" stroke="currentColor" stroke-width="0.8" opacity="0.6"/>
+        </svg>
+        <h3>Bridal Couture</h3>
+        <p>Your wedding day reimagined as a fashion editorial. Custom bridal gowns designed for the modern African bride who commands the room.</p>
+        <a href="#" class="style-link" onclick="navigate('collection')">View Bridal →</a>
+      </div>
+      <div class="style-card fade-up delay-2">
+        <svg class="style-icon" viewBox="0 0 44 44" fill="none">
+          <circle cx="22" cy="8" r="5" stroke="currentColor" stroke-width="1" fill="none" opacity="0.7"/>
+          <path d="M15 13 C12 20 10 28 10 36 L34 36 C34 28 32 20 29 13" stroke="currentColor" stroke-width="1" fill="none" opacity="0.8"/>
+          <path d="M15 25 Q22 29 29 25" stroke="currentColor" stroke-width="0.8" opacity="0.6"/>
+          <path d="M10 36 L6 44 M34 36 L38 44" stroke="currentColor" stroke-width="0.8" opacity="0.4"/>
+        </svg>
+        <h3>Evening Wear</h3>
+        <p>For the gala, the premiere, the red carpet. Evening gowns that make silence fall and cameras click the moment you enter.</p>
+        <a href="#" class="style-link" onclick="navigate('collection')">View Evening →</a>
+      </div>
+      <div class="style-card fade-up delay-3">
+        <svg class="style-icon" viewBox="0 0 44 44" fill="none">
+          <path d="M22 2 L22 42" stroke="currentColor" stroke-width="0.5" opacity="0.3" stroke-dasharray="2 4"/>
+          <path d="M22 2 C16 10 10 18 10 28 C10 36 16 40 22 40 C28 40 34 36 34 28 C34 18 28 10 22 2Z" stroke="currentColor" stroke-width="1" fill="none" opacity="0.8"/>
+          <path d="M10 28 Q22 32 34 28" stroke="currentColor" stroke-width="0.9" opacity="0.6"/>
+          <circle cx="22" cy="15" r="3" fill="currentColor" opacity="0.3"/>
+        </svg>
+        <h3>Haute Couture</h3>
+        <p>Our pinnacle collection. One-of-a-kind masterpieces constructed over hundreds of hours — wearable sculpture for those who define fashion.</p>
+        <a href="#" class="style-link" onclick="navigate('collection')">View Couture →</a>
+      </div>
+      <div class="style-card fade-up delay-4">
+        <svg class="style-icon" viewBox="0 0 44 44" fill="none">
+          <rect x="8" y="8" width="28" height="28" stroke="currentColor" stroke-width="1" fill="none" opacity="0.5" rx="0"/>
+          <path d="M14 8 L14 36 M30 8 L30 36" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+          <path d="M8 20 L36 20" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+          <circle cx="22" cy="22" r="6" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.7"/>
+          <path d="M4 4 L40 40" stroke="currentColor" stroke-width="0.5" opacity="0.2"/>
+        </svg>
+        <h3>Custom Made</h3>
+        <p>Your vision, our hands. Fully bespoke garments built around your exact measurements, personality, and story. No two pieces ever alike.</p>
+        <a href="#" class="style-link" onclick="navigate('contact')">Start Design →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="section-label fade-up" style="justify-content:center;">Client Voices</div>
+    <h2 class="section-title fade-up delay-1" style="text-align:center; margin: 0 auto;">Women Who <em>Wore Treaz</em></h2>
+    <div class="gold-ornament fade-up delay-2">
+      <span></span><div class="gold-ornament-diamond"></div><span></span>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-up delay-1">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">The gown they created for my wedding wasn't just a dress — it was a second skin. I have never felt more powerful, more beautiful, more myself. Every guest was speechless.</p>
+        <div class="testimonial-author">Adaeze Okonkwo</div>
+        <div class="testimonial-role">Bride, Lagos · December 2024</div>
+      </div>
+      <div class="testimonial-card fade-up delay-2">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">I wore Treaz Fashion to the African Business Excellence Awards and was stopped fifteen times for photos before I even reached the stage. The craftsmanship is extraordinary.</p>
+        <div class="testimonial-author">Dr. Fatima Bello</div>
+        <div class="testimonial-role">CEO · Abuja</div>
+      </div>
+      <div class="testimonial-card fade-up delay-3">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">When I say my custom evening gown made international guests ask which Paris house designed it — I am not exaggerating. Treaz Fashion is truly world-class.</p>
+        <div class="testimonial-author">Chidinma Eze</div>
+        <div class="testimonial-role">Diplomat & Fashion Collector</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section fade-up">
+    <div class="cta-bg-text">Treaz</div>
+    <div class="section-label" style="justify-content:center;">Begin Your Journey</div>
+    <h2 class="section-title" style="text-align:center; color:var(--white); margin: 0 auto 1rem;">Ready to <em>Own Your Elegance?</em></h2>
+    <p class="section-sub" style="text-align:center; margin:1rem auto 3rem; color:rgba(255,255,255,0.5);">Book a private consultation with our lead designer. Your story deserves to be told in the finest fabric.</p>
+    <div style="display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap;">
+      <a href="#" class="btn-primary" onclick="navigate('contact')">Book Appointment</a>
+      <a href="https://wa.me/2348012345678" target="_blank" class="btn-outline" style="display:flex;align-items:center;gap:0.6rem;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="gold-line"></div>
+    <div class="footer-top">
+      <div>
+        <span class="footer-brand" onclick="navigate('home')">Treaz Fashion</span>
+        <p class="footer-tagline">Premium African luxury couture house. Where elegance meets identity, and every woman becomes iconic.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul class="footer-links">
+          <li><a onclick="navigate('home')">Home</a></li>
+          <li><a onclick="navigate('collection')">Collection</a></li>
+          <li><a onclick="navigate('about')">Our Story</a></li>
+          <li><a onclick="navigate('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Collections</h4>
+        <ul class="footer-links">
+          <li><a onclick="navigate('collection')">Bridal Couture</a></li>
+          <li><a onclick="navigate('collection')">Evening Wear</a></li>
+          <li><a onclick="navigate('collection')">Haute Couture</a></li>
+          <li><a onclick="navigate('collection')">Custom Made</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul class="footer-links">
+          <li><a href="https://instagram.com/treazfashion" target="_blank">Instagram</a></li>
+          <li><a href="https://wa.me/2348012345678" target="_blank">WhatsApp</a></li>
+          <li><a href="#">TikTok</a></li>
+          <li><a onclick="navigate('contact')">Email Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Treaz Fashion. All rights reserved.</span>
+      <span style="font-family:var(--serif);font-style:italic;color:rgba(201,168,76,0.4);">Elegance. Power. Identity.</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════ COLLECTION PAGE ═══════════════ -->
+<div id="page-collection" class="page">
+  <div class="page-header">
+    <div class="section-label">Our Work</div>
+    <h1 class="section-title">The <em>Collection</em></h1>
+    <p class="section-sub">Every piece is a conversation between heritage and modernity, between the woman you are and the icon you are becoming.</p>
+  </div>
+
+  <div class="collection-filters">
+    <span>Filter:</span>
+    <button class="filter-btn active" onclick="filterProducts('all',this)">All Pieces</button>
+    <button class="filter-btn" onclick="filterProducts('bridal',this)">Bridal</button>
+    <button class="filter-btn" onclick="filterProducts('evening',this)">Evening Wear</button>
+    <button class="filter-btn" onclick="filterProducts('couture',this)">Couture</button>
+    <button class="filter-btn" onclick="filterProducts('custom',this)">Custom Made</button>
+  </div>
+
+  <div class="products-grid">
+    <div class="product-card" data-cat="bridal" onclick="navigate('detail')">
+      <div class="product-img-wrap">
+        <div class="product-placeholder" style="height:100%;overflow:hidden;"><img src="https://images.unsplash.com/photo-1594552072238-b8a33785b6cd?w=700&q=80&fit=crop" alt="fashion piece" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.7s ease;"/></div>
+        <div class="product-reveal"><button class="reveal-btn" onclick="navigate('detail')">View Details</button></div>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Bridal Couture</div>
+        <div class="product-name">Bridal Reverie</div>
+        <div class="product-price">From ₦450,000</div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="evening" onclick="navigate('detail')">
+      <div class="product-img-wrap">
+        <div class="product-placeholder" style="height:100%;overflow:hidden;"><img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=700&q=80&fit=crop" alt="fashion piece" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.7s ease;"/></div>
+        <div class="product-reveal"><button class="reveal-btn" onclick="navigate('detail')">View Details</button></div>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Evening Wear</div>
+        <div class="product-name">Golden Aura Gown</div>
+        <div class="product-price">From ₦280,000</div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="couture" onclick="navigate('detail')">
+      <div class="product-img-wrap">
+        <div class="product-placeholder" style="height:100%;overflow:hidden;"><img src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=700&q=80&fit=crop" alt="fashion piece" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.7s ease;"/></div>
+        <div class="product-reveal"><button class="reveal-btn" onclick="navigate('detail')">View Details</button></div>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Haute Couture</div>
+        <div class="product-name">Midnight Empress</div>
+        <div class="product-price">From ₦340,000</div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="evening" onclick="navigate('detail')">
+      <div class="product-img-wrap">
+        <div class="product-placeholder" style="height:100%;overflow:hidden;"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=700&q=80&fit=crop" alt="fashion piece" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.7s ease;"/></div>
+        <div class="product-reveal"><button class="reveal-btn" onclick="navigate('detail')">View Details</button></div>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Evening Wear</div>
+        <div class="product-name">Velvet Nocturne</div>
+        <div class="product-price">From ₦310,000</div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="custom" onclick="navigate('detail')">
+      <div class="product-img-wrap">
+        <div class="product-placeholder" style="height:100%;overflow:hidden;"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80&fit=crop" alt="fashion piece" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.7s ease;"/></div>
+        <div class="product-reveal"><button class="reveal-btn" onclick="navigate('detail')">View Details</button></div>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Custom Made</div>
+        <div class="product-name">Ivory Sovereign</div>
+        <div class="product-price">From ₦195,000</div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="couture" onclick="navigate('detail')">
+      <div class="product-img-wrap">
+        <div class="product-placeholder" style="height:100%;overflow:hidden;"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=700&q=80&fit=crop" alt="fashion piece" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.7s ease;"/></div>
+        <div class="product-reveal"><button class="reveal-btn" onclick="navigate('detail')">View Details</button></div>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Haute Couture</div>
+        <div class="product-name">Adire Luxe</div>
+        <div class="product-price">From ₦220,000</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="gold-line"></div>
+    <div class="footer-top">
+      <div>
+        <span class="footer-brand" onclick="navigate('home')">Treaz Fashion</span>
+        <p class="footer-tagline">Premium African luxury couture house. Where elegance meets identity.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul class="footer-links">
+          <li><a onclick="navigate('home')">Home</a></li>
+          <li><a onclick="navigate('collection')">Collection</a></li>
+          <li><a onclick="navigate('about')">Our Story</a></li>
+          <li><a onclick="navigate('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Collections</h4>
+        <ul class="footer-links">
+          <li><a>Bridal Couture</a></li>
+          <li><a>Evening Wear</a></li>
+          <li><a>Haute Couture</a></li>
+          <li><a>Custom Made</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul class="footer-links">
+          <li><a href="https://instagram.com/treazfashion" target="_blank">Instagram</a></li>
+          <li><a href="https://wa.me/2348012345678" target="_blank">WhatsApp</a></li>
+          <li><a onclick="navigate('contact')">Email Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Treaz Fashion.</span>
+      <span style="font-family:var(--serif);font-style:italic;color:rgba(201,168,76,0.4);">Elegance. Power. Identity.</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════ PRODUCT DETAIL PAGE ═══════════════ -->
+<div id="page-detail" class="page">
+  <div class="product-detail-layout">
+    <div class="detail-gallery">
+      <div class="main-detail-img" style="background:#111;overflow:hidden;">
+        <img src="https://images.unsplash.com/photo-1594552072238-b8a33785b6cd?w=1000&q=85&fit=crop" alt="Bridal Reverie" style="width:100%;height:100%;object-fit:cover;opacity:0.95;"/>
+        <svg viewBox="0 0 300 500" style="display:none;" width="50%" height="50%" fill="none">
+          <path d="M150 15 C140 50 130 70 120 100 C100 150 95 180 95 220 C95 290 80 340 70 460" stroke="#d4a843" stroke-width="0.7" opacity="0.9"/>
+          <path d="M150 15 C160 50 170 70 180 100 C200 150 205 180 205 220 C205 290 220 340 230 460" stroke="#d4a843" stroke-width="0.7" opacity="0.9"/>
+          <path d="M150 10 C200 30 260 70 295 120" stroke="rgba(212,168,67,0.4)" stroke-width="0.5" stroke-dasharray="4 6"/>
+          <ellipse cx="150" cy="25" rx="38" ry="24" fill="none" stroke="#d4a843" stroke-width="0.6" opacity="0.7"/>
+          <path d="M110 220 Q150 238 190 220" stroke="#e8cc7e" stroke-width="1.3" opacity="0.8"/>
+          <path d="M70 460 Q150 445 230 460 Q270 467 300 475" stroke="#d4a843" stroke-width="0.6" opacity="0.5"/>
+          <!-- lace detail overlay suggestion -->
+          <circle cx="150" cy="150" r="40" fill="none" stroke="rgba(212,168,67,0.12)" stroke-width="0.4"/>
+          <circle cx="150" cy="150" r="28" fill="none" stroke="rgba(212,168,67,0.12)" stroke-width="0.4"/>
+          <!-- crystal clusters -->
+          <circle cx="148" cy="110" r="1.5" fill="rgba(232,204,126,0.7)"/>
+          <circle cx="155" cy="105" r="1" fill="rgba(232,204,126,0.5)"/>
+          <circle cx="142" cy="108" r="1.2" fill="rgba(212,168,67,0.6)"/>
+          <circle cx="158" cy="115" r="1" fill="rgba(232,204,126,0.4)"/>
+        </svg>
+        <div class="detail-thumbs">
+          <div class="thumb active" onclick="switchThumb(this)">1</div>
+          <div class="thumb" onclick="switchThumb(this)">2</div>
+          <div class="thumb" onclick="switchThumb(this)">3</div>
+          <div class="thumb" onclick="switchThumb(this)">4</div>
+        </div>
+      </div>
+    </div>
+    <div class="detail-content">
+      <div class="detail-breadcrumb">
+        <a onclick="navigate('home')">Home</a> ›
+        <a onclick="navigate('collection')">Collection</a> ›
+        <span style="color:var(--gold);">Bridal Reverie</span>
+      </div>
+      <div class="detail-category">Bridal Couture</div>
+      <h1 class="detail-name">The Bridal Reverie Gown</h1>
+      <div class="detail-price">From ₦450,000 · Custom pricing available</div>
+      <div class="detail-divider"></div>
+      <p class="detail-desc">
+        She arrives not just as a bride, but as a vision — a living poem of lace and light. The Bridal Reverie is our most whispered-about creation: a cathedral-length gown in hand-imported French silk tulle, adorned with a hand-sewn Alençon lace bodice and a court train that tells its own story across the floor. Every bead placed by hand. Every fold intentional.
+      </p>
+      <div class="perfect-for">
+        <h4>Perfect For</h4>
+        <div class="perfect-tags">
+          <div class="tag">Traditional Weddings</div>
+          <div class="tag">White Weddings</div>
+          <div class="tag">Garden Ceremonies</div>
+          <div class="tag">Ballroom Receptions</div>
+          <div class="tag">Destination Weddings</div>
+        </div>
+      </div>
+      <div class="detail-divider"></div>
+      <div style="margin-bottom:2rem;">
+        <h4 style="font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--ink);margin-bottom:1rem;">Fabric & Construction</h4>
+        <p style="font-size:0.8rem;color:var(--warm-grey);line-height:1.9;">French silk tulle · Alençon lace bodice · Hand-sewn crystal beading · Cathedral train · Fully boned corset · Custom fit to measurements</p>
+      </div>
+      <div class="detail-actions">
+        <a href="#" class="btn-primary" onclick="navigate('contact')" style="text-align:center;">Book This Design</a>
+        <a href="#" class="btn-outline" onclick="navigate('contact')" style="text-align:center;color:var(--ink);border-color:var(--beige-dark);">Request Customization</a>
+        <a href="https://wa.me/2348012345678?text=Hello%20Treaz%20Fashion!%20I'm%20interested%20in%20the%20Bridal%20Reverie%20Gown." target="_blank" class="btn-wa">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Inquire via WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="gold-line"></div>
+    <div class="footer-bottom" style="padding:2rem 0 0;">
+      <span>© 2025 Treaz Fashion.</span>
+      <a onclick="navigate('collection')" style="color:var(--gold);cursor:pointer;">← Back to Collection</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════ ABOUT PAGE ═══════════════ -->
+<div id="page-about" class="page">
+  <div class="about-hero">
+    <div>
+      <div class="section-label">Our Identity</div>
+      <h1 class="section-title">Fashion is not just<br>clothing — it is <em>identity.</em></h1>
+      <p class="about-hero-sub">The story of Treaz Fashion is the story of a woman who refused to be ordinary — and decided to dress the world accordingly.</p>
+    </div>
+  </div>
+
+  <div class="about-intro">
+    <div class="founder-visual fade-in" style="overflow:hidden;padding:0;border-radius:0;">
+      <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=900&q=85&fit=crop" alt="Treaz Fashion Studio" style="width:100%;height:100%;object-fit:cover;opacity:0.88;"/>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,8,5,0.5) 0%,transparent 60%);pointer-events:none;"></div>
+      <div class="founder-label">The Founder's Vision</div>
+    </div>
+    <div>
+      <div class="section-label fade-up">Founder's Story</div>
+      <h2 class="section-title fade-up delay-1">Born from a <em>Vision</em></h2>
+      <div class="story-text fade-up delay-2" style="color:var(--warm-grey); font-style:normal; font-family:var(--sans); font-size:0.85rem; line-height:2;">
+        <p>Treaz Fashion was born from a simple but radical belief: that African women deserve fashion that celebrates them — not clothes that diminish them.</p>
+        <p style="margin-top:1.2rem;">Our founder, inspired by the regal women who raised her and the global runways she studied obsessively, set out to create a house that fused African elegance with world-class couture craft. Not as an imitation of Paris or Milan, but as something entirely its own — bold, intentional, and deeply beautiful.</p>
+        <p style="margin-top:1.2rem;">Today, Treaz Fashion dresses brides, executives, diplomats, and dreamers. We believe that when a woman puts on a Treaz gown, something shifts in her — a confidence rises, a posture changes, a story begins.</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="about-philosophy">
+    <div class="section-label fade-up" style="justify-content:center;">Our Philosophy</div>
+    <div class="gold-ornament fade-up delay-1">
+      <span></span><div class="gold-ornament-diamond"></div><span></span>
+    </div>
+    <p class="philosophy-quote fade-up delay-2">"Treaz Fashion is not just clothing — it is the expression of <em>elegance</em>, power, and identity."</p>
+    <p class="section-sub fade-up delay-3" style="margin:0 auto;text-align:center;max-width:560px;">We do not follow trends. We set them. Each collection is a manifesto — a declaration that African luxury has arrived on the world stage and is here to stay.</p>
+  </section>
+
+  <section class="craft-section">
+    <div class="section-label fade-up">The Art</div>
+    <h2 class="section-title fade-up delay-1">Our <em>Craftsmanship</em></h2>
+    <div class="craft-grid">
+      <div class="craft-item fade-up delay-1">
+        <div class="craft-number">01</div>
+        <h3>Premium Fabrics</h3>
+        <p>We source exclusively from the world's finest mills — French silk organza, Italian brocade, hand-woven Nigerian Aso-oke — chosen for how they move and how they feel against skin.</p>
+      </div>
+      <div class="craft-item fade-up delay-2">
+        <div class="craft-number">02</div>
+        <h3>Hand Detailing</h3>
+        <p>Every bead, every sequin, every crystal embellishment is placed by hand. A single gown may require 200+ hours of skilled artisan work. This is not manufacturing — it is devotion.</p>
+      </div>
+      <div class="craft-item fade-up delay-3">
+        <div class="craft-number">03</div>
+        <h3>Bespoke Fitting</h3>
+        <p>We take up to 28 measurements per client. Your gown is not adjusted to fit you — it is built around you, from the ground up, as if your silhouette is the blueprint itself.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section fade-up">
+    <div class="cta-bg-text">Identity</div>
+    <div class="section-label" style="justify-content:center;">Begin With Us</div>
+    <h2 class="section-title" style="text-align:center;color:var(--white);margin:0 auto 1rem;">Your story deserves<br>to be <em>worn beautifully.</em></h2>
+    <p class="section-sub" style="text-align:center;margin:1rem auto 3rem;">Book a private consultation. Let us understand your vision and craft something the world has never seen.</p>
+    <div style="display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;">
+      <a href="#" class="btn-primary" onclick="navigate('contact')">Book Consultation</a>
+      <a href="#" class="btn-outline" onclick="navigate('collection')">View Collection</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="gold-line"></div>
+    <div class="footer-top">
+      <div>
+        <span class="footer-brand" onclick="navigate('home')">Treaz Fashion</span>
+        <p class="footer-tagline">Premium African luxury couture. Elegance meets identity.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul class="footer-links">
+          <li><a onclick="navigate('home')">Home</a></li>
+          <li><a onclick="navigate('collection')">Collection</a></li>
+          <li><a onclick="navigate('about')">Our Story</a></li>
+          <li><a onclick="navigate('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul class="footer-links">
+          <li><a href="https://instagram.com/treazfashion" target="_blank">Instagram</a></li>
+          <li><a href="https://wa.me/2348012345678" target="_blank">WhatsApp</a></li>
+          <li><a onclick="navigate('contact')">Email Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Treaz Fashion.</span>
+      <span style="font-family:var(--serif);font-style:italic;color:rgba(201,168,76,0.4);">Elegance. Power. Identity.</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════ CONTACT PAGE ═══════════════ -->
+<div id="page-contact" class="page">
+  <div class="contact-layout">
+    <div class="contact-left">
+      <div class="section-label fade-up">Get In Touch</div>
+      <h2 class="section-title fade-up delay-1">Let's Create<br>Something <em>Extraordinary</em></h2>
+      <p class="fade-up delay-2" style="font-size:0.8rem;color:rgba(255,255,255,0.5);line-height:1.9;margin-top:0.8rem;letter-spacing:0.04em;">Whether you are a bride seeking her dream gown, a professional dressing for power, or a collector seeking investment-grade couture — we are ready to begin.</p>
+      <div class="contact-info-items fade-up delay-3">
+        <div class="contact-info-item">
+          <label>WhatsApp Direct</label>
+          <p>+234 801 234 5678<br><span style="font-size:0.75rem;color:rgba(255,255,255,0.35);">Available Mon – Sat, 9am – 7pm</span></p>
+        </div>
+        <div class="contact-info-item">
+          <label>Email</label>
+          <p>hello@treazfashion.com</p>
+        </div>
+        <div class="contact-info-item">
+          <label>Studio Location</label>
+          <p>Jos, Plateau State, Nigeria<br><span style="font-size:0.75rem;color:rgba(255,255,255,0.35);">By appointment only</span></p>
+        </div>
+        <div class="contact-info-item">
+          <label>Consultations</label>
+          <p>In-studio · Virtual · Home visits available<br><span style="font-size:0.75rem;color:rgba(255,255,255,0.35);">For premium commissions</span></p>
+        </div>
+      </div>
+      <div class="social-links fade-up delay-4">
+        <a href="https://instagram.com/treazfashion" target="_blank" class="social-link">Instagram</a>
+        <a href="https://wa.me/2348012345678" target="_blank" class="social-link">WhatsApp</a>
+        <a href="#" class="social-link">TikTok</a>
+        <a href="#" class="social-link">Pinterest</a>
+      </div>
+    </div>
+    <div class="contact-right">
+      <div class="section-label fade-up">Send a Message</div>
+      <h3 class="form-title fade-up delay-1">Book Your Consultation</h3>
+      <div class="luxury-form fade-up delay-2">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="Your name">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label>Phone / WhatsApp</label>
+          <input type="tel" placeholder="+234...">
+        </div>
+        <div class="form-group">
+          <label>Inquiry Type</label>
+          <select>
+            <option value="">Select inquiry type</option>
+            <option>Bridal Couture</option>
+            <option>Evening Wear</option>
+            <option>Haute Couture Commission</option>
+            <option>Custom Made Design</option>
+            <option>General Inquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Event Date (if applicable)</label>
+          <input type="date">
+        </div>
+        <div class="form-group">
+          <label>Tell Us About Your Vision</label>
+          <textarea placeholder="Describe your dream design — the occasion, mood, colors, silhouette, or anything that inspires you..."></textarea>
+        </div>
+        <button class="btn-submit" onclick="handleSubmit()">Send Inquiry</button>
+        <p style="font-size:0.68rem;color:var(--warm-grey);letter-spacing:0.05em;margin-top:-0.5rem;">We respond within 24 hours. WhatsApp preferred for faster replies.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wa-consult fade-up">
+    <div class="wa-consult-text">
+      <h3>Prefer to chat directly?</h3>
+      <p>Our design team is available on WhatsApp for quick responses and instant consultations.</p>
+    </div>
+    <a href="https://wa.me/2348012345678?text=Hello%20Treaz%20Fashion!%20I'd%20like%20to%20book%20a%20fashion%20consultation." target="_blank" class="btn-wa" style="width:auto;padding:1rem 2.4rem;white-space:nowrap;text-decoration:none;display:inline-flex;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Open WhatsApp
+    </a>
+  </div>
+
+  <footer>
+    <div class="gold-line"></div>
+    <div class="footer-top">
+      <div>
+        <span class="footer-brand" onclick="navigate('home')">Treaz Fashion</span>
+        <p class="footer-tagline">Premium African luxury couture. Elegance meets identity.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul class="footer-links">
+          <li><a onclick="navigate('home')">Home</a></li>
+          <li><a onclick="navigate('collection')">Collection</a></li>
+          <li><a onclick="navigate('about')">Our Story</a></li>
+          <li><a onclick="navigate('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul class="footer-links">
+          <li><a href="https://instagram.com/treazfashion" target="_blank">Instagram</a></li>
+          <li><a href="https://wa.me/2348012345678" target="_blank">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Treaz Fashion.</span>
+      <span style="font-family:var(--serif);font-style:italic;color:rgba(201,168,76,0.4);">Elegance. Power. Identity.</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+// ── CURSOR
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; });
+function animateRing() { rx += (mx-rx)*0.12; ry += (my-ry)*0.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animateRing); }
+animateRing();
+document.querySelectorAll('a,button,[onclick]').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.style.transform='translate(-50%,-50%) scale(2)'; ring.style.width='56px'; ring.style.height='56px'; ring.style.opacity='0.3'; });
+  el.addEventListener('mouseleave', () => { cursor.style.transform='translate(-50%,-50%) scale(1)'; ring.style.width='36px'; ring.style.height='36px'; ring.style.opacity='0.6'; });
+});
+
+// ── NAVIGATION
+function navigate(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  // update nav active states
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.dataset.page === page);
+  });
+  // update nav color context
+  const nav = document.getElementById('mainNav');
+  if(page==='home') {
+    nav.classList.remove('scrolled');
+    checkScroll();
+  } else {
+    nav.classList.add('scrolled');
+    nav.querySelector('.nav-logo').style.color='var(--ink)';
+  }
+  // trigger animations
+  setTimeout(initObserver, 100);
+}
+
+// ── SCROLL NAV
+const nav = document.getElementById('mainNav');
+function checkScroll() {
+  const page = document.querySelector('.page.active')?.id;
+  if(page==='page-home') {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+  }
+}
+window.addEventListener('scroll', checkScroll);
+
+// ── MOBILE MENU
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ── FILTER
+function filterProducts(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.product-card').forEach(card => {
+    if(cat==='all' || card.dataset.cat===cat) {
+      card.style.display='block';
+      card.style.animation='none';
+      card.offsetHeight;
+      card.style.animation='fadeIn 0.5s ease forwards';
+    } else {
+      card.style.display='none';
+    }
+  });
+}
+
+// ── THUMB SWITCH
+function switchThumb(el) {
+  document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ── FORM SUBMIT
+function handleSubmit() {
+  const btn = document.querySelector('.btn-submit');
+  btn.textContent = 'Sending...';
+  btn.style.background = 'var(--gold)';
+  btn.style.color = 'var(--black)';
+  setTimeout(() => {
+    btn.textContent = 'Message Sent ✓';
+    setTimeout(() => {
+      btn.textContent = 'Send Inquiry';
+      btn.style.background = 'var(--ink)';
+      btn.style.color = 'var(--white)';
+    }, 3000);
+  }, 1200);
+}
+
+// ── SCROLL ANIMATIONS (IntersectionObserver)
+function initObserver() {
+  const els = document.querySelectorAll('.page.active .fade-up, .page.active .fade-in');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1, rootMargin:'0px 0px -40px 0px' });
+  els.forEach(el => { el.classList.remove('visible'); obs.observe(el); });
+}
+initObserver();
+
+// ── PARALLAX on hero
+window.addEventListener('scroll', () => {
+  const hero = document.querySelector('.parallax-hero');
+  if(hero && document.getElementById('page-home').classList.contains('active')) {
+    hero.style.transform = `translateY(${window.scrollY * 0.35}px)`;
+  }
+});
+
+// Style keyframe for filter animation
+const style = document.createElement('style');
+style.textContent = '@keyframes fadeIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }';
+document.head.appendChild(style);
+</script>
+</body>
+</html>
